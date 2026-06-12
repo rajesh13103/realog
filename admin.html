@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin Dashboard | Rajesh Builders and Developers</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="responsive.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>⚙️</text></svg>">
+</head>
+<body class="admin-body">
+
+<!-- ========================
+     LOGIN VIEW
+     ======================== -->
+<div id="login-view" class="admin-login">
+  <div class="admin-login-card">
+    <div class="admin-login-logo">Rajesh Builders and Developers</div>
+    <div class="admin-login-sub">Admin Dashboard</div>
+
+    <form id="admin-login-form" novalidate>
+      <div class="form-group" style="margin-bottom:1rem">
+        <label for="admin-username">Username</label>
+        <input type="text" id="admin-username" name="username" placeholder="admin" autocomplete="username" required>
+      </div>
+      <div class="form-group" style="margin-bottom:1.5rem">
+        <label for="admin-password">Password</label>
+        <input type="password" id="admin-password" name="password" placeholder="••••••••" autocomplete="current-password" required>
+      </div>
+      <div id="login-error" style="display:none;color:#ef4444;font-size:0.82rem;margin-bottom:1rem;padding:0.6rem 1rem;background:rgba(239,68,68,0.08);border-radius:6px;border:1px solid rgba(239,68,68,0.2)"></div>
+      <button type="submit" class="btn-primary" style="width:100%;justify-content:center;display:flex">Sign In →</button>
+    </form>
+
+    <p style="font-size:0.72rem;color:var(--gray-mid);text-align:center;margin-top:1.5rem">
+       &nbsp;|&nbsp; <a href="index.html" style="color:var(--gold)">← Back to Site</a>
+    </p>
+  </div>
+</div>
+
+<!-- ========================
+     DASHBOARD VIEW
+     ======================== -->
+<div id="dashboard-view" class="admin-wrap hidden">
+
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar" role="navigation" aria-label="Admin navigation">
+    <div class="admin-sidebar-logo">
+      <div class="admin-sidebar-logo-text">Rajesh Builders and Developers</div>
+      <div class="admin-sidebar-sub">Admin Panel</div>
+    </div>
+
+    <nav class="admin-nav">
+      <div class="admin-nav-section">Overview</div>
+      <div class="admin-nav-item active" data-panel="dashboard">
+        <span class="admin-nav-icon">📊</span>
+        <span>Dashboard</span>
+      </div>
+
+      <div class="admin-nav-section">Content</div>
+      <div class="admin-nav-item" data-panel="layouts">
+        <span class="admin-nav-icon">🏘️</span>
+        <span>Layouts</span>
+      </div>
+      <div class="admin-nav-item" data-panel="gallery">
+        <span class="admin-nav-icon">🖼️</span>
+        <span>Gallery</span>
+      </div>
+      <div class="admin-nav-item" data-panel="crew">
+        <span class="admin-nav-icon">👥</span>
+        <span>Crew Members</span>
+      </div>
+      <div class="admin-nav-item" data-panel="testimonials">
+        <span class="admin-nav-icon">💬</span>
+        <span>Testimonials</span>
+      </div>
+
+      <div class="admin-nav-section">Settings</div>
+      <div class="admin-nav-item" data-panel="contact">
+        <span class="admin-nav-icon">📞</span>
+        <span>Contact Info</span>
+      </div>
+      <div class="admin-nav-item" data-panel="content">
+        <span class="admin-nav-icon">⚙️</span>
+        <span>Statistics</span>
+      </div>
+
+      <div style="padding:1.5rem;margin-top:auto">
+        <a href="index.html" style="font-size:0.8rem;color:var(--gray-mid);display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem">
+          ← View Website
+        </a>
+        <button id="logout-btn" class="admin-logout-btn" style="width:100%">Sign Out</button>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h1 class="admin-page-title" id="admin-page-title">Dashboard</h1>
+      <div style="display:flex;align-items:center;gap:1rem">
+        <span style="font-size:0.8rem;color:var(--gray-mid)">Welcome, <span style="color:var(--gold)">Admin</span></span>
+        <button id="logout-btn-top" class="admin-logout-btn" onclick="document.getElementById('logout-btn').click()">Sign Out</button>
+      </div>
+    </div>
+
+    <!-- ======== DASHBOARD PANEL ======== -->
+    <div id="panel-dashboard" class="admin-panel active">
+      <div class="admin-stats-row">
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon">🏘️</div>
+          <div class="admin-stat-num" id="dash-layouts-count">0</div>
+          <div class="admin-stat-label">Total Layouts</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon">✅</div>
+          <div class="admin-stat-num" id="dash-available-count">0</div>
+          <div class="admin-stat-label">Available Layouts</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon">🖼️</div>
+          <div class="admin-stat-num" id="dash-gallery-count">0</div>
+          <div class="admin-stat-label">Gallery Images</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon">👥</div>
+          <div class="admin-stat-num" id="dash-crew-count">0</div>
+          <div class="admin-stat-label">Crew Members</div>
+        </div>
+      </div>
+
+      <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:2rem">
+        <h3 style="font-family:var(--font-display);font-size:1.2rem;margin-bottom:1.5rem;color:var(--gold)">Quick Actions</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem">
+          <button class="btn-primary" onclick="document.querySelector('[data-panel=layouts]').click()">+ Add New Layout</button>
+          <button class="btn-outline" onclick="document.querySelector('[data-panel=gallery]').click()">+ Add Gallery Image</button>
+          <button class="btn-outline" onclick="document.querySelector('[data-panel=crew]').click()">+ Add Crew Member</button>
+          <button class="btn-outline" onclick="document.querySelector('[data-panel=contact]').click()">✏️ Edit Contact Info</button>
+        </div>
+      </div>
+
+      <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:2rem;margin-top:1.5rem">
+        <h3 style="font-family:var(--font-display);font-size:1.1rem;margin-bottom:1rem">Admin Guide</h3>
+        <div style="display:flex;flex-direction:column;gap:0.75rem">
+          <p style="font-size:0.82rem;color:var(--gray-light);line-height:1.7">📌 <strong style="color:var(--white)">Layouts:</strong> Add, edit, or delete layouts. Changes reflect instantly on the Layouts page.</p>
+          <p style="font-size:0.82rem;color:var(--gray-light);line-height:1.7">📌 <strong style="color:var(--white)">Gallery:</strong> Upload images by URL for each category (layout, interior, construction).</p>
+          <p style="font-size:0.82rem;color:var(--gray-light);line-height:1.7">📌 <strong style="color:var(--white)">Crew Members:</strong> Manage team profiles shown on the homepage.</p>
+          <p style="font-size:0.82rem;color:var(--gray-light);line-height:1.7">📌 <strong style="color:var(--white)">Contact Info:</strong> Update phone, WhatsApp, email and address — reflected across all pages.</p>
+          <p style="font-size:0.82rem;color:var(--gray-light);line-height:1.7">📌 <strong style="color:var(--white)">Statistics:</strong> Update the counter numbers shown on the homepage stats band.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======== LAYOUTS PANEL ======== -->
+    <div id="panel-layouts" class="admin-panel">
+      <div class="admin-table-wrap">
+        <div class="admin-table-header">
+          <div class="admin-table-title">All Layouts</div>
+          <button class="btn-primary" id="btn-add-layout" style="font-size:0.8rem;padding:0.6rem 1.25rem">+ Add Layout</button>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Layout Name</th>
+                <th>Location</th>
+                <th>Plots</th>
+                <th>Price / Sq Yd</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="layouts-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======== GALLERY PANEL ======== -->
+    <div id="panel-gallery" class="admin-panel">
+      <div style="display:grid;grid-template-columns:1fr 1.5fr;gap:2rem;align-items:start">
+        <!-- Add Form -->
+        <div class="admin-form" style="position:sticky;top:2rem">
+          <h3 style="font-family:var(--font-display);font-size:1.1rem;margin-bottom:1.5rem;color:var(--gold)">Add Gallery Image</h3>
+          <form id="gallery-add-form">
+            <div class="form-group">
+              <label>Image Title</label>
+              <input type="text" name="title" placeholder="e.g. Golden Meadows Aerial View" required>
+            </div>
+            <div class="form-group">
+              <label>Image URL</label>
+              <input type="url" name="imageUrl" placeholder="https://images.unsplash.com/..." required>
+            </div>
+            <div class="form-group">
+              <label>Category</label>
+              <select name="category">
+                <option value="layout">Layout Project</option>
+                <option value="interior">Interior Design</option>
+                <option value="construction">Construction</option>
+              </select>
+            </div>
+            <button type="submit" class="btn-primary" style="width:100%">Add to Gallery</button>
+          </form>
+        </div>
+        <!-- Grid -->
+        <div>
+          <h3 style="font-family:var(--font-display);font-size:1.1rem;margin-bottom:1.25rem;color:var(--gold)">Gallery Images</h3>
+          <div class="admin-gallery-grid" id="admin-gallery-grid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======== CREW PANEL ======== -->
+    <div id="panel-crew" class="admin-panel">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem">
+        <h3 style="font-family:var(--font-display);font-size:1.2rem">Crew Members</h3>
+        <button class="btn-primary" id="btn-add-crew" style="font-size:0.8rem;padding:0.6rem 1.25rem">+ Add Member</button>
+      </div>
+      <div class="admin-crew-grid" id="admin-crew-grid"></div>
+    </div>
+
+    <!-- ======== TESTIMONIALS PANEL ======== -->
+    <div id="panel-testimonials" class="admin-panel">
+      <div style="display:grid;grid-template-columns:1fr 1.8fr;gap:2rem;align-items:start">
+        <!-- Add Form -->
+        <div class="admin-form" style="position:sticky;top:2rem">
+          <h3 style="font-family:var(--font-display);font-size:1.1rem;margin-bottom:1.5rem;color:var(--gold)">Add Testimonial</h3>
+          <form id="testimonial-add-form">
+            <div class="form-group">
+              <label>Client Name</label>
+              <input type="text" name="name" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label>Project Name</label>
+              <input type="text" name="project" placeholder="Golden Meadows" required>
+            </div>
+            <div class="form-group">
+              <label>Rating (1-5)</label>
+              <select name="rating">
+                <option value="5">★★★★★ (5)</option>
+                <option value="4">★★★★ (4)</option>
+                <option value="3">★★★ (3)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Review</label>
+              <textarea name="review" placeholder="Write the client review..." rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+              <label>Photo URL (optional)</label>
+              <input type="url" name="photo" placeholder="https://...">
+            </div>
+            <button type="submit" class="btn-primary" style="width:100%">Add Testimonial</button>
+          </form>
+        </div>
+        <!-- Table -->
+        <div class="admin-table-wrap">
+          <div class="admin-table-header">
+            <div class="admin-table-title">All Testimonials</div>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Client</th>
+                  <th>Project</th>
+                  <th>Rating</th>
+                  <th>Review</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="testimonials-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======== CONTACT INFO PANEL ======== -->
+    <div id="panel-contact" class="admin-panel">
+      <div class="admin-form" style="max-width:700px">
+        <h3 style="font-family:var(--font-display);font-size:1.2rem;margin-bottom:0.5rem;color:var(--gold)">Contact Information</h3>
+        <p style="font-size:0.82rem;color:var(--gray-mid);margin-bottom:1.5rem">These details appear on the website, floating buttons, footer, and contact page.</p>
+        <form id="contact-settings-form">
+          <div class="admin-form-grid">
+            <div class="form-group">
+              <label>Company Name</label>
+              <input type="text" name="companyName" placeholder="Prestige Estates">
+            </div>
+            <div class="form-group">
+              <label>Tagline</label>
+              <input type="text" name="tagline" placeholder="Where Luxury Meets Legacy">
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" name="phone" placeholder="+91 98765 43210">
+            </div>
+            <div class="form-group">
+              <label>WhatsApp Number</label>
+              <input type="tel" name="whatsapp" placeholder="+919876543210 (no spaces)">
+            </div>
+            <div class="form-group admin-form-full">
+              <label>Email Address</label>
+              <input type="email" name="email" placeholder="info@example.com">
+            </div>
+            <div class="form-group admin-form-full">
+              <label>Office Address</label>
+              <textarea name="address" rows="2" placeholder="Full office address..."></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn-primary">Save Contact Info</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ======== STATISTICS PANEL ======== -->
+    <div id="panel-content" class="admin-panel">
+      <div class="admin-form" style="max-width:600px">
+        <h3 style="font-family:var(--font-display);font-size:1.2rem;margin-bottom:0.5rem;color:var(--gold)">Website Statistics</h3>
+        <p style="font-size:0.82rem;color:var(--gray-mid);margin-bottom:1.5rem">Update the counter numbers shown in the stats band on the homepage.</p>
+        <form id="stats-form">
+          <div class="admin-form-grid">
+            <div class="form-group">
+              <label>Layouts Completed</label>
+              <input type="number" name="layouts" placeholder="48" min="0">
+            </div>
+            <div class="form-group">
+              <label>Plots Sold</label>
+              <input type="number" name="plotsSold" placeholder="1200" min="0">
+            </div>
+            <div class="form-group">
+              <label>Projects Completed</label>
+              <input type="number" name="projects" placeholder="320" min="0">
+            </div>
+            <div class="form-group">
+              <label>Happy Clients</label>
+              <input type="number" name="clients" placeholder="850" min="0">
+            </div>
+            <div class="form-group">
+              <label>Crew Members</label>
+              <input type="number" name="crew" placeholder="15" min="1">
+            </div>
+          </div>
+          <button type="submit" class="btn-primary">Update Statistics</button>
+        </form>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ======== LAYOUT MODAL ======== -->
+<div class="admin-modal" id="layout-modal" role="dialog" aria-modal="true" aria-labelledby="layout-modal-title">
+  <div class="admin-modal-box">
+    <div class="admin-modal-header">
+      <h3 class="admin-modal-title" id="layout-modal-title">Add New Layout</h3>
+      <button class="modal-close" id="layout-modal-close" aria-label="Close">✕</button>
+    </div>
+    <div class="admin-modal-body">
+      <form id="layout-form">
+        <input type="hidden" name="id">
+        <div class="admin-form-grid">
+          <div class="form-group">
+            <label>Layout Name *</label>
+            <input type="text" name="name" placeholder="Golden Meadows Phase 1" required>
+          </div>
+          <div class="form-group">
+            <label>Location *</label>
+            <input type="text" name="location" placeholder="Shamshabad, Hyderabad" required>
+          </div>
+          <div class="form-group">
+            <label>Total Plots</label>
+            <input type="number" name="totalPlots" placeholder="120" min="1">
+          </div>
+          <div class="form-group">
+            <label>Available Plots</label>
+            <input type="number" name="availablePlots" placeholder="28" min="0">
+          </div>
+          <div class="form-group">
+            <label>Total Area</label>
+            <input type="text" name="totalArea" placeholder="45 Acres">
+          </div>
+          <div class="form-group">
+            <label>Price / Sq Yard</label>
+            <input type="text" name="pricePerSqYd" placeholder="₹18,000">
+          </div>
+          <div class="form-group">
+            <label>Status</label>
+            <select name="status">
+              <option value="available">Available</option>
+              <option value="limited">Limited Availability</option>
+              <option value="soldout">Sold Out</option>
+              <option value="upcoming">Upcoming</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Google Maps Link</label>
+            <input type="url" name="mapsLink" placeholder="https://maps.google.com/...">
+          </div>
+          <div class="form-group admin-form-full">
+            <label>Image URL *</label>
+            <input type="url" name="image" placeholder="https://images.unsplash.com/..." required>
+          </div>
+          <div class="form-group admin-form-full">
+            <label>Description</label>
+            <textarea name="description" rows="2" placeholder="Brief description of the layout..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Roads</label>
+            <input type="text" name="roads" placeholder="40ft & 30ft BT Roads">
+          </div>
+          <div class="form-group">
+            <label>Water Facility</label>
+            <input type="text" name="water" placeholder="Borewell + HMWSSB">
+          </div>
+          <div class="form-group">
+            <label>Electricity</label>
+            <input type="text" name="electricity" placeholder="TS Transco Underground">
+          </div>
+          <div class="form-group admin-form-full">
+            <label>Plot Sizes (comma separated)</label>
+            <input type="text" name="plotSizes" placeholder="100 Sq Yd, 150 Sq Yd, 200 Sq Yd">
+          </div>
+          <div class="form-group admin-form-full">
+            <label>Amenities (comma separated)</label>
+            <input type="text" name="amenities" placeholder="24/7 Security, Clubhouse, Park, Underground Drainage">
+          </div>
+          <div class="form-group admin-form-full">
+            <label>Nearby Locations (comma separated)</label>
+            <input type="text" name="nearby" placeholder="ORR Junction 2km, Airport 8km, Schools nearby">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="admin-modal-footer">
+      <button class="admin-btn-cancel" id="layout-modal-cancel">Cancel</button>
+      <button class="admin-btn-save" onclick="document.getElementById('layout-form').dispatchEvent(new Event('submit',{bubbles:true}))">Save Layout</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======== CREW MODAL ======== -->
+<div class="admin-modal" id="crew-modal" role="dialog" aria-modal="true" aria-labelledby="crew-modal-title">
+  <div class="admin-modal-box">
+    <div class="admin-modal-header">
+      <h3 class="admin-modal-title" id="crew-modal-title">Add Crew Member</h3>
+      <button class="modal-close" id="crew-modal-close" aria-label="Close">✕</button>
+    </div>
+    <div class="admin-modal-body">
+      <form id="crew-form">
+        <input type="hidden" name="id">
+        <div class="admin-form-grid">
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" name="name" placeholder="Rajesh Kumar" required>
+          </div>
+          <div class="form-group">
+            <label>Role / Designation *</label>
+            <input type="text" name="role" placeholder="Chief Architect" required>
+          </div>
+          <div class="form-group">
+            <label>Experience</label>
+            <input type="text" name="experience" placeholder="12 Years">
+          </div>
+          <div class="form-group">
+            <label>Photo URL</label>
+            <input type="url" name="photo" placeholder="https://...">
+          </div>
+          <div class="form-group admin-form-full">
+            <label>Skills (comma separated)</label>
+            <input type="text" name="skills" placeholder="Architecture, AutoCAD, Structural Design">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="admin-modal-footer">
+      <button class="admin-btn-cancel" id="crew-modal-cancel">Cancel</button>
+      <button class="admin-btn-save" onclick="document.getElementById('crew-form').dispatchEvent(new Event('submit',{bubbles:true}))">Save Member</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="js/admin.js"></script>
+</body>
+</html>

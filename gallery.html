@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Prestige Estates project gallery — layouts, construction, and interior design projects in Hyderabad.">
+  <title>Gallery | Prestige Estates</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="animations.css">
+  <link rel="stylesheet" href="responsive.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🏛️</text></svg>">
+</head>
+<body>
+
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+<div id="scroll-progress"></div>
+
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-text">Rajesh Builders and Developers</span>
+    <span class="nav-logo-sub">Estates</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="nav-link">Home</a></li>
+    <li><a href="layouts.html" class="nav-link">Layouts</a></li>
+    <li><a href="services.html" class="nav-link">Services</a></li>
+    <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+    <li><a href="contact.html" class="nav-link nav-cta">Contact Us</a></li>
+  </ul>
+  <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-nav">
+  <a href="index.html" class="mobile-nav-link">Home</a>
+  <a href="layouts.html" class="mobile-nav-link">Layouts</a>
+  <a href="services.html" class="mobile-nav-link">Services</a>
+  <a href="gallery.html" class="mobile-nav-link">Gallery</a>
+  <a href="contact.html" class="mobile-nav-link">Contact</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-content">
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>Gallery</span>
+    </nav>
+    <h1 class="page-hero-title anim-fade-up">Project <span class="gold">Gallery</span></h1>
+    <p style="color:var(--gray-light);font-size:0.9rem;margin-top:0.75rem;max-width:500px" class="anim-fade-up delay-2">
+      A visual journey through our completed layouts, stunning interiors, and landmark construction projects.
+    </p>
+  </div>
+</div>
+
+<!-- GALLERY SECTION -->
+<section>
+  <!-- FILTER TABS -->
+  <div class="gallery-filters anim-fade-up">
+    <button class="gallery-filter-btn active" data-filter="all">All Projects</button>
+    <button class="gallery-filter-btn" data-filter="layout">Layouts</button>
+    <button class="gallery-filter-btn" data-filter="interior">Interiors</button>
+    <button class="gallery-filter-btn" data-filter="construction">Construction</button>
+  </div>
+
+  <!-- MASONRY GRID -->
+  <div class="masonry-grid" id="gallery-grid">
+    <div style="column-span:all;text-align:center;padding:3rem;color:var(--gray-mid)">
+      <div style="font-size:2rem;display:inline-block">⟳</div>
+      <p style="margin-top:1rem">Loading gallery...</p>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close image">✕</button>
+  <img id="lightbox-img" src="" alt="" class="lightbox-img">
+</div>
+
+<!-- STATS MINI -->
+<section style="background:var(--bg-secondary)">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2rem;max-width:900px;margin:0 auto;text-align:center">
+    <div class="anim-fade-up delay-1">
+      <div style="font-family:var(--font-display);font-size:2.5rem;font-weight:700;color:var(--gold)">10+</div>
+      <div style="font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray-mid);margin-top:0.25rem">Projects Completed</div>
+    </div>
+    <div class="anim-fade-up delay-2">
+      <div style="font-family:var(--font-display);font-size:2.5rem;font-weight:700;color:var(--gold)">5+</div>
+      <div style="font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray-mid);margin-top:0.25rem">Layouts Developed</div>
+    </div>
+    <div class="anim-fade-up delay-3">
+      <div style="font-family:var(--font-display);font-size:2.5rem;font-weight:700;color:var(--gold)">5+</div>
+      <div style="font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray-mid);margin-top:0.25rem">Happy Families</div>
+    </div>
+    <div class="anim-fade-up delay-4">
+      <div style="font-family:var(--font-display);font-size:2.5rem;font-weight:700;color:var(--gold)">2+</div>
+      <div style="font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray-mid);margin-top:0.25rem">Years of Excellence</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="text-align:center">
+  <div class="anim-zoom-in">
+    <div class="section-eyebrow" style="justify-content:center">Let's Create Together</div>
+    <h2 class="section-title">Inspired by Our <span class="gold italic">Work?</span></h2>
+    <p style="color:var(--gray-light);margin-bottom:2rem;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.8;font-size:0.9rem">
+      Let us create something equally stunning for you. Book a free consultation with our design team today.
+    </p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="contact.html" class="btn-primary">Start Your Project</a>
+      <a href="layouts.html" class="btn-outline">View Layouts</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-text">Rajesh Builders and Developers</div>
+      <div class="footer-brand-sub">Premium Real Estate</div>
+      <p class="footer-about">Trusted real estate developer in Hyderabad with 2+ years of excellence.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Quick Links</div>
+      <ul class="footer-links">
+        <li><a href="index.html" class="footer-link">Home</a></li>
+        <li><a href="layouts.html" class="footer-link">Layouts</a></li>
+        <li><a href="services.html" class="footer-link">Services</a></li>
+        <li><a href="gallery.html" class="footer-link">Gallery</a></li>
+        <li><a href="contact.html" class="footer-link">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Contact</div>
+      <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+919966563335" data-contact="phone">+91 99665 63335</a></div>
+      <div class="footer-contact-item"><span class="footer-contact-icon">✉️</span><a href="mailto:rajeshmanagement26@gmail.com" data-contact="email">rajeshmanagement26@gmail.com</a></div>
+    </div>
+    <div>
+      <div class="footer-heading">Address</div>
+      <div class="footer-contact-item"><span class="footer-contact-icon">📍</span><span data-contact="address">Tirupathi, Andhra Pradesh, India</span></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 <span>Rajesh Builders and Developers</span>. All rights reserved.</p>
+  </div>
+</footer>
+
+<div class="float-btns">
+  <a href="https://wa.me/919966563335" class="float-btn float-whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+  <a href="tel:+919966563335" class="float-btn float-call" aria-label="Call">📞</a>
+</div>
+<button id="back-to-top" aria-label="Back to top">↑</button>
+
+<script type="module" src="js/main.js"></script>
+<script type="module" src="js/animations.js"></script>
+<script type="module" src="js/gallery.js"></script>
+</body>
+</html>

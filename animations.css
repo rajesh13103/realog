@@ -1,0 +1,393 @@
+/* ============================================
+   ANIMATIONS CSS
+   ============================================ */
+
+/* =====================
+   KEYFRAMES
+   ===================== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeLeft {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeRight {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes scaleReveal {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes goldGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(212,175,55,0.2); }
+  50% { box-shadow: 0 0 40px rgba(212,175,55,0.4); }
+}
+
+@keyframes textReveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+  to {
+    clip-path: inset(0 0% 0 0);
+    opacity: 1;
+  }
+}
+
+@keyframes particleFloat {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.2; }
+  100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+}
+
+@keyframes borderSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* =====================
+   SCROLL ANIMATIONS
+   (Intersection Observer)
+   ===================== */
+
+/* Initial hidden state */
+.anim-fade-up,
+.anim-fade-down,
+.anim-fade-left,
+.anim-fade-right,
+.anim-zoom-in,
+.anim-scale {
+  opacity: 0;
+  transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity, transform;
+}
+
+.anim-fade-up { transform: translateY(50px); }
+.anim-fade-down { transform: translateY(-30px); }
+.anim-fade-left { transform: translateX(50px); }
+.anim-fade-right { transform: translateX(-50px); }
+.anim-zoom-in { transform: scale(0.88); }
+.anim-scale { transform: scale(0.94); }
+
+/* Animated / visible state */
+.anim-fade-up.animated,
+.anim-fade-down.animated,
+.anim-fade-left.animated,
+.anim-fade-right.animated,
+.anim-zoom-in.animated,
+.anim-scale.animated {
+  opacity: 1;
+  transform: none;
+}
+
+/* Staggered delays */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+.delay-6 { transition-delay: 0.6s; }
+.delay-7 { transition-delay: 0.7s; }
+.delay-8 { transition-delay: 0.8s; }
+
+/* =====================
+   FLOATING PARTICLES
+   (Hero background)
+   ===================== */
+.particles-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 50%;
+  opacity: 0;
+  animation: particleFloat linear infinite;
+}
+
+/* =====================
+   SHIMMER EFFECT
+   ===================== */
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    var(--gold-dark) 0%,
+    var(--gold-light) 40%,
+    var(--gold) 60%,
+    var(--gold-dark) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* =====================
+   GLOW PULSE
+   ===================== */
+.glow-pulse {
+  animation: goldGlow 3s ease infinite;
+}
+
+/* =====================
+   FLOATING ELEMENT
+   ===================== */
+.floating {
+  animation: float 4s ease-in-out infinite;
+}
+
+.floating-slow {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* =====================
+   HERO DECORATIVE LINES
+   ===================== */
+.hero-line {
+  position: absolute;
+  background: linear-gradient(to bottom, transparent, rgba(212,175,55,0.15), transparent);
+  width: 1px;
+  animation: float 5s ease-in-out infinite;
+}
+
+.hero-line-1 {
+  left: 10%;
+  top: 20%;
+  height: 200px;
+  animation-delay: 0s;
+}
+
+.hero-line-2 {
+  right: 15%;
+  top: 30%;
+  height: 150px;
+  animation-delay: 1.5s;
+}
+
+/* =====================
+   CARD ENTRANCE
+   ===================== */
+.card-entrance {
+  opacity: 0;
+  transform: translateY(30px) scale(0.97);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.card-entrance.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* =====================
+   PARALLAX
+   ===================== */
+.parallax-bg {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+/* =====================
+   COUNTER ANIMATION
+   ===================== */
+.counter-number {
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+/* =====================
+   BUTTON RIPPLE
+   ===================== */
+.btn-primary,
+.btn-outline {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  transform: scale(0);
+  animation: rippleAnim 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes rippleAnim {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* =====================
+   NAVBAR TRANSITION
+   ===================== */
+.nav-link-animate {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-link-animate::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--gold);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.3s ease;
+}
+
+.nav-link-animate:hover::before {
+  clip-path: inset(0 0% 0 0);
+}
+
+/* =====================
+   SECTION REVEAL LINE
+   ===================== */
+.reveal-line {
+  position: relative;
+  overflow: hidden;
+}
+
+.reveal-line::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s ease;
+}
+
+.reveal-line.animated::after {
+  transform: scaleX(1);
+}
+
+/* =====================
+   IMAGE HOVER OVERLAY
+   ===================== */
+.img-hover-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.img-hover-wrap img {
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.img-hover-wrap:hover img {
+  transform: scale(1.08);
+}
+
+.img-hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.img-hover-wrap:hover .img-hover-overlay {
+  opacity: 1;
+}
+
+/* =====================
+   GOLD BORDER ANIMATE
+   ===================== */
+.gold-border-animate {
+  position: relative;
+}
+
+.gold-border-animate::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--gold), transparent, var(--gold));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.gold-border-animate:hover::before { opacity: 1; }
+
+/* =====================
+   TEXT GRADIENT ANIMATE
+   ===================== */
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold-light), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* =====================
+   LOADING SPINNER
+   ===================== */
+.spin {
+  animation: rotate 1s linear infinite;
+  display: inline-block;
+}
+
+/* =====================
+   PAGE TRANSITION
+   ===================== */
+.page-transition {
+  animation: fadeIn 0.5s ease;
+}
